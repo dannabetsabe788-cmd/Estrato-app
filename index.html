@@ -148,6 +148,7 @@ function StrataToggle({ deep, onChange }) {
     </button>
   );
 }
+  
 function renderText(text) {
   const lines = (text || "").split("\n");
   return lines.map((line, i) => {
@@ -167,7 +168,6 @@ function renderText(text) {
     );
   });
 }
-function Bubble({ msg }) {
   const isUser = msg.role === "user";
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-3`}>
