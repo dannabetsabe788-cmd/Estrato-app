@@ -148,7 +148,25 @@ function StrataToggle({ deep, onChange }) {
     </button>
   );
 }
-
+function renderText(text) {
+  const lines = (text || "").split("\n");
+  return lines.map((line, i) => {
+    const isBullet = /^\s*[\*\-]\s+/.test(line);
+    const cleanLine = isBullet ? line.replace(/^\s*[\*\-]\s+/, "") : line;
+    const parts = cleanLine.split(/(\\[^]+\\*)/g).map((part, j) => {
+      if (part.startsWith("*") && part.endsWith("*")) {
+        return <strong key={j}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+    return (
+      <div key={i} style={{ display: "flex", gap: 6 }}>
+        {isBullet && <span>•</span>}
+        <span>{parts}{line === "" ? "\u00A0" : null}</span>
+      </div>
+    );
+  });
+}
 function Bubble({ msg }) {
   const isUser = msg.role === "user";
   return (
