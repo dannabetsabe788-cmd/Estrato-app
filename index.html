@@ -168,6 +168,7 @@ function renderText(text) {
     );
   });
 }
+function Bubble({ msg }) {
   const isUser = msg.role === "user";
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} mb-3`}>
